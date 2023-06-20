@@ -50,6 +50,8 @@ The Home Connect app utilizes advanced networking techniques to perform backgrou
 
 Advanced networking enables the app to handle network errors, such as loss of connectivity or timeouts when communicating with the smart home devices. It can implement error handling strategies and recovery mechanisms to ensure smooth user experience even in unreliable network conditions.
 
+
+
 **What is Retrofit library?**
 
 ![retrofit](https://github.com/Vijaya9418/Advanced-Networking-in-android/assets/56352158/e54be804-c590-4622-9f42-6b231dae3fa7)
