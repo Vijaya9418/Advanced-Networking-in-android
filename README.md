@@ -63,32 +63,49 @@ Here's an example of how to use Retrofit in Android:
 **1. Add the Retrofit dependencies to your project. You can do this by adding the following lines to your app-level build.gradle file:**
 
 dependencies {
+
     // Other dependencies...
+    
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'  // JSON serialization
+    
 }
+
+
 
 **2. Create a data model class that represents the structure of the data you expect to send or receive from the API. **
 
 public class User {
+
     private int id;
+    
     private String name;
+    
     // ... Other properties, constructors, getters, and setters
+    
 }
 
 
 **3. Define the API endpoints using an interface. Each method in the interface represents a specific API request. Annotate the methods with the appropriate HTTP method and endpoint path.**
 
 public interface UserService {
+
     @GET("users")
+    
     Call<List<User>> getUsers();
+    
 }
+
 
 **4. Create a Retrofit instance and specify the base URL of the API. You can do this in your application's initialization code or in a dedicated class. For example:**
 
 Retrofit retrofit = new Retrofit.Builder()
+
     .baseUrl("https://api.example.com/")
+    
     .addConverterFactory(GsonConverterFactory.create())
+    
     .build();
 
 UserService userService = retrofit.create(UserService.class);
@@ -97,21 +114,37 @@ UserService userService = retrofit.create(UserService.class);
 **5. Make API requests by calling the methods defined in the interface. Wrap the result in a Call object, which represents the asynchronous request.**
 
 Call<List<User>> call = userService.getUsers();
+
 call.enqueue(new Callback<List<User>>() {
+
     @Override
+    
     public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+    
         if (response.isSuccessful()) {
+        
             List<User> users = response.body();
+            
             // Process the list of users
-        } else {
+            
+        } 
+        else
+        {
+        
             // Handle error
+            
         }
+        
     }
 
     @Override
+    
     public void onFailure(Call<List<User>> call, Throwable t) {
+    
         // Handle network error
+        
     }
+    
 });
 
 
