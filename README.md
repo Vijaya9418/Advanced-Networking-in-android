@@ -49,3 +49,70 @@ The Home Connect app utilizes advanced networking techniques to perform backgrou
 **Error Handling and Recovery:**
 
 Advanced networking enables the app to handle network errors, such as loss of connectivity or timeouts when communicating with the smart home devices. It can implement error handling strategies and recovery mechanisms to ensure smooth user experience even in unreliable network conditions.
+
+**What is Retrofit library?**
+
+![retrofit](https://github.com/Vijaya9418/Advanced-Networking-in-android/assets/56352158/e54be804-c590-4622-9f42-6b231dae3fa7)
+
+
+The Retrofit library is a widely used networking library that simplifies the process of making HTTP requests and handling the responses. It is developed by Square and provides a high-level API for interacting with web services.
+
+
+Here's an example of how to use Retrofit in Android:
+
+**1. Add the Retrofit dependencies to your project. You can do this by adding the following lines to your app-level build.gradle file:**
+
+dependencies {
+    // Other dependencies...
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'  // JSON serialization
+}
+
+**2. Create a data model class that represents the structure of the data you expect to send or receive from the API. **
+
+public class User {
+    private int id;
+    private String name;
+    // ... Other properties, constructors, getters, and setters
+}
+
+
+**3. Define the API endpoints using an interface. Each method in the interface represents a specific API request. Annotate the methods with the appropriate HTTP method and endpoint path.**
+
+public interface UserService {
+    @GET("users")
+    Call<List<User>> getUsers();
+}
+
+**4. Create a Retrofit instance and specify the base URL of the API. You can do this in your application's initialization code or in a dedicated class. For example:**
+
+Retrofit retrofit = new Retrofit.Builder()
+    .baseUrl("https://api.example.com/")
+    .addConverterFactory(GsonConverterFactory.create())
+    .build();
+
+UserService userService = retrofit.create(UserService.class);
+
+
+**5. Make API requests by calling the methods defined in the interface. Wrap the result in a Call object, which represents the asynchronous request.**
+
+Call<List<User>> call = userService.getUsers();
+call.enqueue(new Callback<List<User>>() {
+    @Override
+    public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+        if (response.isSuccessful()) {
+            List<User> users = response.body();
+            // Process the list of users
+        } else {
+            // Handle error
+        }
+    }
+
+    @Override
+    public void onFailure(Call<List<User>> call, Throwable t) {
+        // Handle network error
+    }
+});
+
+
+
