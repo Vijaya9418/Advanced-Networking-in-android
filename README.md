@@ -52,6 +52,8 @@ Advanced networking enables the app to handle network errors, such as loss of co
 
 
 
+
+
 **What is Retrofit library?**
 
 ![retrofit](https://github.com/Vijaya9418/Advanced-Networking-in-android/assets/56352158/e54be804-c590-4622-9f42-6b231dae3fa7)
